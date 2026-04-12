@@ -1,0 +1,30 @@
+---
+# Плейбук для задания 2
+
+- name: Set my motd on Servers
+  hosts: servers
+  become: yes
+
+  tasks:
+    - name: Get info from servers
+      setup:
+        filter: ansible_hostname,ansible_default_ipv4
+
+    - name: Set my motd
+      set_fact:
+        my_motd: |
+          ***************************************
+          СЕРВЕР: {{ ansible_hostname }}
+          IP-АДРЕС: {{ ansible_default_ipv4.address }}
+          ---------------------------------------
+          Уважаемый системный администратор,
+          желаю вам отличного дня и стабильных систем!
+          ***************************************
+
+    - name: Save my motd in /etc/motd
+      copy:
+        content: "{{ my_motd }}"
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: '0644'

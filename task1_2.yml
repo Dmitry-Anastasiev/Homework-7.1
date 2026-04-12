@@ -1,0 +1,18 @@
+---
+# Плейбук для задания 1 пункт 2
+
+- name: Install and service tuned started on Ubuntu
+  hosts: servers
+  become: yes
+
+  tasks:
+    - name: Install tuned
+      apt:
+        name: tuned
+        state: present
+
+    - name: Service tuned started
+      systemd:
+        name: tuned
+        state: started
+        enabled: yes

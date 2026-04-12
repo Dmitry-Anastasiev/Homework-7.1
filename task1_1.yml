@@ -1,0 +1,47 @@
+---
+# Плейбук для задания 1 пункт 1
+
+- name: Download, extract source code Apache Kafka on Ubuntu
+  hosts: servers
+  become: yes
+  vars:
+    kafka_version: "4.2.0"
+    kafka_url: "https://downloads.apache.org/kafka/{{ kafka_version }}/kafka-{{ kafka_version }}-src.tgz"
+    download_path: "/tmp/kafka-src.tgz"
+    extract_dir: "/opt/kafka-source"
+
+  tasks:
+    - name: Install wget, tar
+      apt:
+        name:
+          - wget
+          - tar
+        state: present
+        update_cache: yes
+
+    - name: Make dir
+      file:
+        path: "{{ extract_dir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Download Kafka
+      get_url:
+        url: "{{ kafka_url }}"
+        dest: "{{ download_path }}"
+        timeout: 60
+        force: yes
+
+    - name: Extract in /opt/kafka-source
+      unarchive:
+        src: "{{ download_path }}"
+        dest: "{{ extract_dir }}"
+        remote_src: yes
+        creates: "{{ extract_dir }}/kafka-{{ kafka_version }}-src"
+
+    - name: Удалить временный архив
+      file:
+        path: "{{ download_path }}"
+        state: absent

@@ -1,0 +1,71 @@
+- name: Update cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install Apache
+  apt:
+    name: "{{ apache_package }}"
+    state: present
+
+- name: Create template index.html
+  template:
+    src: index.html.j2
+    dest: "{{ index_file }}"
+    mode: '0644'
+
+- name: Open port 80
+  ufw:
+    rule: allow
+    port: 80
+    proto: tcp
+  when: ansible_facts.services.ufw is defined and ansible_facts.services.ufw.state == "running"
+
+- name: Started Apache and enabled on
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: yes
+
+- name: copy configuration Apache
+  template:
+    src: templates/apache2.conf.j2
+    dest: /etc/apache2/apache2.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Apache
+
+- name: Check web service (code 200)
+  uri:
+    url: "http://{{ ansible_host }}"
+    timeout: 10
+    validate_certs: no
+  register: web_response
+  delegate_to: localhost
+  run_once: true
+  ignore_errors: true
+
+- name: Save result checking
+  set_fact:
+    global_web_response: "{{ web_response }}"
+  run_once: true
+  delegate_to: localhost
+  when: web_response is defined
+
+- name: Access site
+  debug:
+    msg:
+      - "Сайт http://{{ ansible_host }} доступен."
+      - "Код ответа: {{ global_web_response.status }}"
+  when: >
+    global_web_response is defined and
+    global_web_response is succeeded and
+    global_web_response.status == 200
+
+- name: Failed site
+  debug:
+    msg: "Сайт http://{{ ansible_host }} недоступен (статус: {{ global_web_response.status }})"
+  when: >
+    global_web_response is defined and
+    (global_web_response is failed or global_web_response.status != 200)

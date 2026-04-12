@@ -1,0 +1,21 @@
+---
+# Плейбук для задания 3
+
+- name: Install and setup Apache on Servers
+  hosts: servers
+  become: true
+  vars:
+    apache_package: apache2
+    apache_service: apache2
+    document_root: /var/www/html
+    index_file: "{{ document_root }}/index.html"
+
+  handlers:
+    - name: Restart Apache
+      service:
+        name: "{{ apache_service }}"
+        state: restarted
+
+  roles:
+    - role: setup_apache_server
+      tags: apache

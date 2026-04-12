@@ -1,0 +1,20 @@
+---
+# Плейбук для задания 1 пункт 3
+
+- name: Set my motd on Servers
+  hosts: servers
+  become: yes
+  vars:
+    my_motd: |
+      ***************************************
+      Добро пожаловать на сервер Ubuntu!
+      ***************************************
+
+  tasks:
+    - name: Save my motd in /etc/motd
+      copy:
+        content: "{{ my_motd }}"
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: '0644'

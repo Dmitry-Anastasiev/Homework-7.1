@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Характеристики хоста</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
+        h1 { color: #333; }
+        ul { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        li { margin: 10px 0; font-size: 1.1em; }
+        footer { margin-top: 30px; color: #777; font-style: italic; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Характеристики хоста: {{ ansible_hostname }}</h1>
+    <ul>
+        <li><strong>CPU:</strong> {{ ansible_processor_count | default('N/A') }}</li>
+        <li><strong>Количество ядер:</strong> {{ ansible_processor_cores | default('N/A') }}</li>
+        <li><strong>RAM (всего):</strong> {{ '%0.2f'|format(ansible_memtotal_mb / 1024) }} ГБ</li>
+        <li>
+            <strong>Первый HDD:</strong>
+            {% if ansible_devices and ansible_devices.keys() | list | sort | first %}
+                {% set disk = (ansible_devices.keys() | list | reject('match', 'loop\\d+') | list | sort | first) %}
+                {{ disk }} ({{ ansible_devices[disk].size }})
+            {% else %}
+                N/A
+            {% endif %}
+        </li>
+        <li><strong>IP-адрес (внутренний):</strong> {{ ansible_default_ipv4.address | default('N/A') }}</li>
+    </ul>
+</body>
+</html>

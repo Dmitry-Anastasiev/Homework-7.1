@@ -14,11 +14,15 @@
 
 ### Решение 1
 
-[Playbook 1](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task1_1.yml)
+[Playbook для задания 1 пункт 1](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task1_1.yml)
 
-[Playbook 2](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task1_2.yml)
+[Playbook для задания 1 пункт 2](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task1_2.yml)
 
-[Playbook 3](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task1_3.yml)
+![Скриншот версии tuned и статуса сервиса](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/Screenshot_tuned.png)
+
+[Playbook для задания 1 пункт 3](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task1_3.yml)
+
+![Скриншот приветствия](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/Screenshot_task1_motd.png)
 
 ---
 
@@ -30,7 +34,9 @@
 
 ### Решение 2
 
-[Playbook](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task2.yml)
+[Playbook для задания 2](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task2.yml)
+
+![Скриншот приветствия](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/Screenshot_task2_motd.png)
 
 ---
 
@@ -61,4 +67,6 @@
 
 [Index.html](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/roles/setup_apache_server/templates/index.html.j2)
 
-![ScreenShot Browser](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/Screenshot_browser.png)
+![Скриншот работы Playbook](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/Screenshot_playbook.png)
+
+![Скриншот страницы в браузере](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/Screenshot_browser.png)

@@ -61,4 +61,4 @@
 
 [Index.html](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/roles/setup_apache_server/templates/index.html.j2)
 
-[ScreenShot Browser](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/Screenshot_browser.png)
+![ScreenShot Browser](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/Screenshot_browser.png)

@@ -63,7 +63,7 @@
 
 [Playbook](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task3.yml)
 
-[Архив с ролью](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/roles/setup_apache_server.tar.gz)
+[Архив с ролью](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/setup_apache_server.tar.gz)
 
 ![Скриншот работы Playbook](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/Screenshot_playbook.png)
 

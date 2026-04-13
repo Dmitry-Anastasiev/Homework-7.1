@@ -16,6 +16,8 @@
 
 [Playbook для задания 1 пункт 1](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task1_1.yml)
 
+[Структура целевой директории](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/tree-kafka)
+
 [Playbook для задания 1 пункт 2](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/task1_2.yml)
 
 ![Скриншот версии tuned и статуса сервиса](https://github.com/Dmitry-Anastasiev/homework-7.1/blob/main/Screenshot_tuned.png)

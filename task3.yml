@@ -19,3 +19,6 @@
   roles:
     - role: setup_apache_server
       tags: apache
+
+  tasks:
+    - copy
